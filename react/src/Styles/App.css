@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+.App {
+  text-align: center;
+}
+.navbar-dark {
+  background: #b0b0b0;
+  max-height: 70px;
+}
+.in-progress {
+  background-color: #a0a0ff ;
+}
+.not-started {
+  background-color: #ffa0a0;
+}
+.done {
+  background-color: #a0ffa0;
+}
+.table-header {
+  background-color: #b0b0b0;
+}
+.App-logoTop {
+  width: 145px;
+}
