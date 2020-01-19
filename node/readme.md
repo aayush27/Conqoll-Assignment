@@ -1,13 +1,13 @@
-This project consists of 5 APIs to make work easier for receptionalist. Below are list of API with endpoints, parameters and expected response.
+This project consists of 5 APIs to make work easier for receptionalist. Below are list of API with Endpoints, Parameters and expected Response.
 
-1. ##Signup: ##
-##Endpoint:##  `localhost:8000/auth/signup`
-##Request Type:## `POST`
-##Parameters:## `{
+- Signup:
+**Endpoint:**  localhost:8000/auth/signup
+**Request Type:** POST
+**Parameters:** {
     email: "email@address.com",
     password: "password"
-}`
-##Response:##  `"user": {
+}
+**Response:**  `"user": {
         "_id": "5e23f6d04fd1c30784206360",
         "email": "email@address.com",
         "password": "$2a$10$.muZRH7lJmHT4SWqtXSqt.uuCZ0bFZPrGVjzyxtJDttjBPVmYM.Ia",
@@ -15,14 +15,14 @@ This project consists of 5 APIs to make work easier for receptionalist. Below ar
         "__v": 0
     }`
 
-2. Login: 
-> Endpoint: localhost:8000/auth/login
-> Request Type: POST
-> Parameters: {
+- Login: 
+**Endpoint**: localhost:8000/auth/login
+**Request Type**: POST
+**Parameters**: {
     email: "email@address.com",
     password: "password"
 }
-> Response:  "user": {
+**Response**:  "user": {
         "_id": "5e23f6d04fd1c30784206360",
         "email": "email@address.com",
         "createdDate": "2020-01-19T06:27:28.209Z",
@@ -31,23 +31,23 @@ This project consists of 5 APIs to make work easier for receptionalist. Below ar
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGFkZHJlc3MuY29tIiwiaWF0IjoxNTc5NDE1MzAzfQ.XTF-YlkZ74zpC45a_zTwi---WlQW9gr-oQQciYG6y40"
     }
 
-3. Check Availabilty of Rooms between specific date
-> Endpoint: localhost:8000/checkRoomAvailability
-> Request Type: GET
-> Parameters: {
+- Check Availabilty of Rooms between specific date
+**Endpoint**: localhost:8000/checkRoomAvailability
+**Request Type**: GET
+**Parameters**: {
     roomName: "Single Room",
     startDate: "Sun Jan 25 2020 00:00:00 GMT+0530",
     endDate: "Tue Jan 28 2020 23:59:59 GMT+0530"
 }
-> Headers: {
+**Headers**: {
     authorization: "bearer GENERATED_TOKEN"
 }
-> Response:  { "data": "Room is available" }
+**Response**:  { "data": "Room is available" }
 
-4. Book Rooms between specific date
-> Endpoint: localhost:8000/bookRoom
-> Request Type: POST
-> Parameters: {
+- Book Rooms between specific date
+**Endpoint**: localhost:8000/bookRoom
+**Request Type**: POST
+**Parameters**: {
 	"guestName": "Aayush Patidar",
     "idProof": "Aadhar Card",
     "idProofNumber": "111122223333",
@@ -55,10 +55,10 @@ This project consists of 5 APIs to make work easier for receptionalist. Below ar
     "endDate": "Tue Jan 28 2020 00:00:00 GMT+0530",
     "roomName": "Single Room"
 }
-> Headers: {
+**Headers**: {
     authorization: "bearer GENERATED_TOKEN"
 }
-> Response:  { "data": {
+**Response**:  { "data": {
         "isCancelled": false,
         "_id": "5e23ee0f06ed1f26d83afa6a",
         "guestName": "Aayush Patidar",
@@ -73,16 +73,16 @@ This project consists of 5 APIs to make work easier for receptionalist. Below ar
     }
 }
 
-5. Cancel the booking by booking ID
-> Endpoint: localhost:8000/checkRoomAvailability
-> Request Type: PUT
-> Parameters: {
+- Cancel the booking by booking ID
+**Endpoint**: localhost:8000/checkRoomAvailability
+**Request Type**: PUT
+**Parameters**: {
     id: ObjectId("id")
 }
-> Headers: {
+**Headers**: {
     authorization: "bearer GENERATED_TOKEN"
 }
-> Response:  { "data": {
+**Response**:  { "data": {
         "isCancelled": true,
         "_id": "5e23eda006ed1f26d83afa69",
         "guestName": "Aayush Patidar",
