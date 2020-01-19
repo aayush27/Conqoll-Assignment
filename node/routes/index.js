@@ -1,6 +1,6 @@
 import express from 'express';
 import auth from './auth.route';
-import { addNote, deleteNote, updateNote, getNotes } from '../controllers/note.controller';
+import { checkRoomAvailability, bookRoom, cancelBooking } from '../controllers/booking.controller';
 import { tokenValidator } from '../middleware/auth.middleware';
 const router = express.Router();
 
@@ -11,9 +11,8 @@ router.get('/', function(req, res, next) {
 
 router.use('/auth', auth);
 
-router.get('/getNotes', getNotes);
-router.post('/addNote', tokenValidator, addNote);
-router.delete('/deleteNote', tokenValidator, deleteNote);
-router.put('/updateNote', tokenValidator, updateNote);
+router.get('/checkRoomAvailability', checkRoomAvailability);
+router.post('/bookRoom', bookRoom);
+router.put('/cancelBooking', cancelBooking);
 
 module.exports = router;
