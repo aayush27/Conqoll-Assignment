@@ -1,19 +1,19 @@
 This project consists of 5 APIs to make work easier for receptionalist. Below are list of API with endpoints, parameters and expected response.
 
-1. Signup: 
-> Endpoint: localhost:8000/auth/signup
-> Request Type: POST
-> Parameters: {
+1. ##Signup: ##
+##Endpoint:##  `localhost:8000/auth/signup`
+##Request Type:## `POST`
+##Parameters:## `{
     email: "email@address.com",
     password: "password"
-}
-> Response:  "user": {
+}`
+##Response:##  `"user": {
         "_id": "5e23f6d04fd1c30784206360",
         "email": "email@address.com",
         "password": "$2a$10$.muZRH7lJmHT4SWqtXSqt.uuCZ0bFZPrGVjzyxtJDttjBPVmYM.Ia",
         "createdDate": "2020-01-19T06:27:28.209Z",
         "__v": 0
-    }
+    }`
 
 2. Login: 
 > Endpoint: localhost:8000/auth/login
