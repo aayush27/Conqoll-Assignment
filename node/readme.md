@@ -31,6 +31,17 @@ This project consists of 5 APIs to make work easier for receptionalist. Below ar
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGFkZHJlc3MuY29tIiwiaWF0IjoxNTc5NDE1MzAzfQ.XTF-YlkZ74zpC45a_zTwi---WlQW9gr-oQQciYG6y40"
 }``` <br/>
 
+- Create the room entry to make the room available for booking (Needs to be run first)
+**Endpoint**: localhost:8000/createRoomEntry <br/>
+**Request Type**: POST <br/>
+**Parameters**: ```{
+    roomName: "Single Room",
+    totalRooms: 10
+}```<br/>
+**Response**:  ```{ 
+        "data": "Room entry created successfully" 
+    }``` <br/>
+
 - Check Availabilty of Rooms between specific date <br/>
 **Endpoint**: localhost:8000/checkRoomAvailability <br/>
 **Request Type**: GET <br/>
