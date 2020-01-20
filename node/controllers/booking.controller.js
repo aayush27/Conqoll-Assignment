@@ -29,7 +29,7 @@ exports.checkRoomAvailability = (req, res) => {
             res.status(200).json({ data: response });
         })
         .catch((error) => {
-            console.log('error: ', error);
+            console.log('checkRoomAvailability - error = ', error);
             res.status(400).json({ error: error});
         });
 };

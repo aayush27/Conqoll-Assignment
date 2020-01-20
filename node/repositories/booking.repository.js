@@ -3,6 +3,16 @@ import * as constants from '../util/constants';
 const Booking = db.Booking;
 const Room = db.Room;
 
+exports.createRoomEntry = (req, res) => {
+    const params = {
+        roomName: "Single Room",
+        totalRooms: 2
+    }
+    const room = new Room(params);
+    room.save();
+    res.status(200).send('Room entry created successfully');
+}
+
 exports.bookRoom = (data) => {
     return new Promise((resolve, reject) => {
         const booking = new Booking(data);
@@ -21,12 +31,19 @@ exports.checkRoomAvailability = (data) => {
             Booking.find({
                 $and: 
                 [
-                    { startDate: { $lte: data.startDate }},
-                    { endDate: { $gte: data.endDate }},
+                    { $or: [
+                        { startDate: { $gte: data.startDate }},
+                        { endDate: { $lte: data.startDate }},
+                    ]},
+                    // { $or: [
+                    //     { startDate: { $gte: data.endDate }},
+                    //     { endDate: { $lte: data.endDate }},
+                    // ]},
                     { roomName: data.roomName },
                     { isCancelled: false },
                 ]
             }, function(error2, bookings) {
+                console.log('bookings: ', bookings);
                 if (bookings && bookings.length < room.totalRooms) {
                     return resolve('Room is available');
                 } else {

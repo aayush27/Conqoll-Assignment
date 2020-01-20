@@ -5,7 +5,6 @@ exports.signup = (req, res) => {
         email: req.body.email,
         password: req.body.password
     }
-    console.log('params: ', params);
     signup(params)
         .then((response) => {
             res.status(200).json({ user: response });
