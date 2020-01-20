@@ -6,11 +6,11 @@ const Room = db.Room;
 exports.createRoomEntry = (req, res) => {
     const params = {
         roomName: "Single Room",
-        totalRooms: 2
+        totalRooms: 10
     }
     const room = new Room(params);
     room.save();
-    res.status(200).send('Room entry created successfully');
+    res.status(200).send(constants.SUCCESS_MESSAGE.ROOM_CREATED_SUCCESSFULLY);
 }
 
 exports.bookRoom = (data) => {
@@ -28,26 +28,42 @@ exports.bookRoom = (data) => {
 exports.checkRoomAvailability = (data) => {
     return new Promise((resolve, reject) => {
         Room.findOne({ roomName: data.roomName }, function(error1, room) {
+            if (error1) {
+                return reject(error1);
+            }
             Booking.find({
-                $and: 
+                $or: 
                 [
-                    { $or: [
-                        { startDate: { $gte: data.startDate }},
-                        { endDate: { $lte: data.startDate }},
+                    { $and: [
+                        { startDate: { $lte: data.startDate }},
+                        { endDate: { $gte: data.endDate }},
                     ]},
-                    // { $or: [
-                    //     { startDate: { $gte: data.endDate }},
-                    //     { endDate: { $lte: data.endDate }},
-                    // ]},
-                    { roomName: data.roomName },
-                    { isCancelled: false },
-                ]
+                    { $and: [
+                        { startDate: { $lte: data.startDate }},
+                        { endDate: { $gte: data.startDate }},
+                        { endDate: { $lte: data.endDate }}
+                    ]},
+                    { $and: [
+                        { startDate: { $gte: data.startDate }},
+                        { startDate: { $lte: data.endDate }},
+                        { endDate: { $gte: data.endDate }}
+                    ]},
+                    { $and: [
+                        { startDate: { $gte: data.startDate }},
+                        { startDate: { $lte: data.endDate }},
+                        { endDate: { $lte: data.endDate }}
+                    ]}
+                ],
+                roomName: data.roomName,
+                isCancelled: false 
             }, function(error2, bookings) {
-                console.log('bookings: ', bookings);
+                if (error2) {
+                    return reject(error2);
+                }
                 if (bookings && bookings.length < room.totalRooms) {
-                    return resolve('Room is available');
+                    return resolve(constants.SUCCESS_MESSAGE.ROOM_IS_AVAILABLE);
                 } else {
-                    return reject('Room is not available');
+                    return reject(constants.ERROR_MESSAGE.ROOM_NOT_AVAILABLE);
                 }
             });
         });
@@ -58,7 +74,7 @@ exports.cancelBooking = (id) => {
     return new Promise((resolve, reject) => {
         Booking.findOneAndUpdate({ _id: id }, { isCancelled: true, updatedAt: new Date() }, { new: true }, function (err, response) {
             if (response && response.id) {
-                return resolve(response);
+                return resolve(constants.SUCCESS_MESSAGE.BOOKING_CANCELLED);
             } else {
                 return reject(constants.ERROR_MESSAGE.ID_NOT_EXISTS);
             }   

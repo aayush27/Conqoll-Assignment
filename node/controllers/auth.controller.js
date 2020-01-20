@@ -7,7 +7,7 @@ exports.signup = (req, res) => {
     }
     signup(params)
         .then((response) => {
-            res.status(200).json({ user: response });
+            res.status(200).json(response);
         })
         .catch((error) => {
             res.status(400).json({ error: error});
@@ -21,7 +21,7 @@ exports.login = (req, res) => {
     }
     login(params)
         .then((response) => {
-            res.status(200).json({ user: response });
+            res.status(200).json(response);
         })
         .catch((error) => {
             res.status(400).json({ error: error});
